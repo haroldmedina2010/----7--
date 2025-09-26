@@ -29,8 +29,8 @@ global.jadi = "Sessions/SubBot"
 global.MichiJadibts = true
 
 global.botname = "Shadow-BOT-MD"
-global.textbot = "ᴍɪᴄʜɪ ᴠ3, 𝗔𝗱𝗼"
-global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝙮𝙤𝙨𝙪𝙚"
+global.textbot = "Shadow-BOT, yosue"
+global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ yosue"
 global.author = "© mᥲძᥱ ᥕі𝗍һ 𝙮𝙤𝙨𝙪𝙚"
 global.etiqueta = "𝙮𝙤𝙨𝙪𝙚 | 𝟤𝟢𝟤𝟧 ©"
 global.currency = "¢ Pesos"
