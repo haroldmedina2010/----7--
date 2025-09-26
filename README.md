@@ -1,36 +1,32 @@
-# 「✦」Michi-WaMD
 
-![Michi-WaMD Banner](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
+![shadow-bot-MD](https://adonixfiles.mywire.org/files/xzadonix_07.jpg)
 
-「✦」¿Qué es Michi-WaMD?  
-> ✐ Michi-WaMD es un bot para WhatsApp enfocado en la diversión, utilidad y automatización de tareas, construido usando Baileys para interactuar con WhatsApp Web.
+*SHADOW-BOT-MD*
 
----
+*SHADOW-BOT-MD* es un poderoso bot de WhatsApp diseñado para transformar tus chats en una experiencia dinámica, divertida y automatizada. Construido con pasión y precisión, este bot ofrece una amplia gama de funciones que lo convierten en una herramienta esencial para grupos, comunidades y usuarios individuales.
 
-「✦」Funcionalidades
+*⚙️ Funciones destacadas:*
+- 🎨 *Creación de stickers* al instante desde imágenes o texto
+- 📥 *Descarga de videos y música* desde plataformas como YouTube, Instagram, TikTok, etc.
+- 🧠 *Comandos inteligentes* con respuestas automáticas, juegos, y herramientas útiles
+- 📸 *Conversión de medios*, como imágenes a stickers, texto a voz, y más
+- 🛡️ *Moderación de grupos*, incluyendo anti-spam, anti-link, y control de usuarios
+- 🔍 *Buscadores integrados* para anime, letras de canciones, y contenido multimedia
+- 💬 *Interacción personalizada*, con menús, botones y respuestas adaptadas al usuario
 
-> ✰ Responde a comandos personalizados  
-> ✰ Envío de stickers, imágenes, audio y texto  
-> ✰ Juegos y utilidades sencillas  
-> ✰ Automatización de respuestas
-
----
-
-「✦」Instalación rápida
-
-⟩ Este bot no tendra compatibilidad con termux ni cloudshell, por lo tanto pronto tendra su web donde podran conectarse.
+*🧪 ¿Por qué SHADOW-BOT-MD?*
+Este bot no es solo funcional, es una declaración de estilo. Su diseño modular permite personalizar comandos, añadir plugins, y adaptarlo a cualquier necesidad. Ideal para quienes buscan un bot con carácter, rendimiento y estética.
 
 ---
 
-「✦」Contribuciones
+*👑 Créditos*
 
-> ✐ ¡Pull requests y sugerencias son bienvenidas!  
-> ✰ ¡Tu ayuda hace crecer a Michi-WaMD!
+Esta obra maestra fue posible gracias a la visión y el talento de:
+
+- *Yosue* –
+- *Wirk* – 
 
 ---
 
-「✦」Créditos
-
-> ✐ Creado por [meado-learner](https://github.com/meado-learner)
-
-
+💡 _SHADOW-BOT-MD no solo responde... se impone._
+Prepárate para llevar tu WhatsApp al siguiente nivel.
