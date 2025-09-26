@@ -34,8 +34,8 @@ global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝙮𝙤𝙨𝙪𝙚"
 global.author = "© mᥲძᥱ ᥕі𝗍һ 𝙮𝙤𝙨𝙪𝙚"
 global.etiqueta = "𝙮𝙤𝙨𝙪𝙚 | 𝟤𝟢𝟤𝟧 ©"
 global.currency = "¢ Pesos"
-global.michipg = "https://files.catbox.moe/p2eq60.jpg"
-global.icono = "https://files.catbox.moe/dnjyto.jpg"
+global.michipg = "https://adonixfiles.mywire.org/files/xzadonix_33.jpg"
+global.icono = "https://qu.ax/Xktgw.jpg"
 global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
 
 
