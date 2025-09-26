@@ -7,7 +7,7 @@ global.botNumber = ""
 
 global.owner = [
 // ZONA DE JIDS
-["50493732693", "Ado </>", true],
+["584242773183", "yosue </>", true],
 [""],
 [""],  
 // ZONA DE LIDS 
@@ -17,22 +17,22 @@ global.owner = [
 ]
 
 global.mods = []
-global.suittag = ["50493732693"] 
+global.suittag = ["584242773183"] 
 global.prems = []
 
 
 global.libreria = "Baileys Multi Device"
 global.vs = "^1.3.2"
-global.nameqr = "Michi"
+global.nameqr = "shadow"
 global.sessions = "Sessions/Principal"
 global.jadi = "Sessions/SubBot"
 global.MichiJadibts = true
 
-global.botname = "𝖬𝗂𝖼𝗁𝗂 - 𝖡𝗈𝗍𝖶𝖺"
+global.botname = "Shadow-BOT-MD"
 global.textbot = "ᴍɪᴄʜɪ ᴠ3, 𝗔𝗱𝗼"
-global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝗔𝗱𝗼"
-global.author = "© mᥲძᥱ ᥕі𝗍һ 𝖠𝖽𝗈"
-global.etiqueta = "𝖠𝖽𝗈 | 𝟤𝟢𝟤𝟧 ©"
+global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝙮𝙤𝙨𝙪𝙚"
+global.author = "© mᥲძᥱ ᥕі𝗍һ 𝙮𝙤𝙨𝙪𝙚"
+global.etiqueta = "𝙮𝙤𝙨𝙪𝙚 | 𝟤𝟢𝟤𝟧 ©"
 global.currency = "¢ Pesos"
 global.michipg = "https://files.catbox.moe/p2eq60.jpg"
 global.icono = "https://files.catbox.moe/dnjyto.jpg"
