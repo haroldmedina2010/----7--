@@ -15,14 +15,14 @@ export async function before(m, { conn, participants, groupMetadata}) {
   let userName = user? user.name: await conn.getName(who);
 
   const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
-  const redes = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O'; // ← canal actualizado
+  const canalOficial = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O'; // ← canal actualizado
 
   if (chat.welcome && m.messageStubType === 27) {
     this.sendMessage(m.chat, {
       audio: { url: vn},
       contextInfo: {
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363417092486861@newsletter",
+          newsletterJid: "120363403739366547@newsletter",
           serverMessageId: '',
           newsletterName: 'shadow'
 },
@@ -34,7 +34,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
           body: `¡Nos alegra tenerte aquí en *${groupMetadata.subject}*!`,
           previewType: "PHOTO",
           thumbnail,
-          sourceUrl: redes,
+          sourceUrl: canalOficial,
           showAdAttribution: true
 }
 },
@@ -62,7 +62,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
           body: `Esperamos verte de nuevo por *${groupMetadata.subject}*`,
           previewType: "PHOTO",
           thumbnail,
-          sourceUrl: redes,
+          sourceUrl: canalOficial,
           showAdAttribution: true
 }
 },
@@ -72,4 +72,4 @@ export async function before(m, { conn, participants, groupMetadata}) {
       fileName: `despedida.mp3`
 }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
 }
-                                                }
+        }
