@@ -56,7 +56,18 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
       bot.jadibot = isEnable;
       break;
 
-    //... (los demás casos siguen igual)
+    case 'antilink':
+      if (!m.isGroup &&!isOwner) {
+        global.dfail('group', m, conn);
+        throw false;
+} else if (m.isGroup &&!isAdmin) {
+        global.dfail('admin', m, conn);
+        throw false;
+}
+      chat.antilink = isEnable;
+      break;
+
+    // Puedes seguir agregando más funciones aquí si lo deseas
 }
 
   chat[type] = isEnable;
@@ -68,8 +79,8 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
 );
 };
 
-handler.help = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot'];
+handler.help = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot', 'antilink'];
 handler.tags = ['nable'];
-handler.command = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot'];
+handler.command = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot', 'antilink'];
 
 export default handler;
