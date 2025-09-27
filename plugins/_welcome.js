@@ -1,26 +1,24 @@
 import fetch from 'node-fetch';
 
-export async function before(m, { conn, participants, groupMetadata}) {
+export async function before(m, { conn, groupMetadata}) {
   if (!m.messageStubType ||!m.isGroup) return true;
 
-  let vn = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
-  let vn2 = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
-  let chat = global.db.data.chats[m.chat];
-  const getMentionedJid = () => {
-    return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
-};
-
-  let who = m.messageStubParameters[0] + '@s.whatsapp.net';
-  let user = global.db.data.users[who];
-  let userName = user? user.name: await conn.getName(who);
-
-  const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
+  const chat = global.db.data.chats[m.chat];
   const canalOficial = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O';
+  const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
+  const getMentionedJid = () => m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
+  const who = m.messageStubParameters[0] + '@s.whatsapp.net';
+  const userName = await conn.getName(who);
 
+  // ✅ Usa tu audio subido a Catbox, Uguu, etc.
+  const bienvenidaAudio = 'https://files.catbox.moe/u8cr1t.mp3';
+  const despedidaAudio = 'https://files.catbox.moe/u8cr1t.mp3';
+
+  // 🎉 Bienvenida
   if (chat.welcome && m.messageStubType === 27) {
     await conn.sendMessage(m.chat, {
-      audio: { url: vn},
-      mimetype: 'audio/mp4', // ← usa audio/mp4 para.mp3 si el servidor lo permite
+      audio: { url: bienvenidaAudio},
+      mimetype: 'audio/mp4', // usa audio/mp4 para mayor compatibilidad
       ptt: true,
       fileName: 'bienvenida.mp3',
       contextInfo: {
@@ -37,9 +35,10 @@ export async function before(m, { conn, participants, groupMetadata}) {
 }, { quoted: m});
 }
 
+  // 👋 Despedida
   if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
     await conn.sendMessage(m.chat, {
-      audio: { url: vn2},
+      audio: { url: despedidaAudio},
       mimetype: 'audio/mp4',
       ptt: true,
       fileName: 'despedida.mp3',
@@ -56,4 +55,4 @@ export async function before(m, { conn, participants, groupMetadata}) {
 }
 }, { quoted: m});
 }
-}
+        }
