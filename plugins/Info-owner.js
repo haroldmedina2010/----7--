@@ -9,7 +9,7 @@ let handler = async (m, { conn}) => {
   let list = [
     {
       displayName: " Shadow Creator ",
-      vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:Shadow Master\nTEL;type=CELL;waid=50493732693:+504 9373-2693\nTEL;type=CELL;waid=584242773183:+58 424-2773183\nEND:VCARD`
+      vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:Shadow Master\nTEL;type=CELL;waid=50493732693:+504 9373-2693\nTEL;type=CELL;waid=584242773183:+58 424-2773183\nTEL;type=CELL;waid=523328418129:+52 33 2841 8129\nEND:VCARD`
 }
   ];
 
@@ -34,7 +34,7 @@ let handler = async (m, { conn}) => {
 }, { quoted: m});
 
   // Mensaje decorado estilo The Eminence in Shadow
-  let txt = ` 𝙄𝙉𝙁𝙊 𝘿𝙀 𝙇𝘼 𝘾𝙍𝙀𝘼𝘿𝙊𝙍 
+  let txt = ` 𝙄𝙉𝙁𝙊 𝘿𝙀 𝙇𝘼 𝘾𝙍𝙀𝘼𝘿𝙊𝙍
 
 > ⚔️ 𝗦𝗛𝗔𝗗𝗢𝗪 𝗠𝗔𝗦𝗧𝗘𝗥 ⚔️
 > 😉 El estratega oculto tras las líneas del código
@@ -45,6 +45,7 @@ https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O
 📱 𝗖𝗢𝗡𝗧𝗔𝗖𝗧𝗢𝗦 𝗗𝗘 𝗟𝗔 𝗢𝗥𝗚𝗔𝗡𝗜𝗭𝗔𝗖𝗜𝗢́𝗡:
 +504 9373-2693
 +58 424-2773183
++52 33 2841 8129
 
 🧬 𝗖𝗢𝗗𝗘 𝗗𝗘 𝗔𝗖𝗖𝗘𝗦𝗢:
 https://wa.me/584242773183?text=.code
