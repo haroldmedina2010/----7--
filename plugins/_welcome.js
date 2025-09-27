@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 export async function before(m, { conn, participants, groupMetadata}) {
   if (!m.messageStubType ||!m.isGroup) return true;
 
-  let vn = 'https://files.catbox.moe/viiztg.mp3';
+  let vn = 'https://files.catbox.moe/u8cr1t.mp3';
   let vn2 = 'https://files.catbox.moe/u8cr1t.mp3';
   let chat = global.db.data.chats[m.chat];
   const getMentionedJid = () => {
@@ -72,4 +72,4 @@ export async function before(m, { conn, participants, groupMetadata}) {
       fileName: `despedida.mp3`
 }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
 }
-                                                }
+      }
