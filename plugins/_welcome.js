@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 export async function before(m, { conn, participants, groupMetadata}) {
   if (!m.messageStubType ||!m.isGroup) return true;
 
-  let vn = 'https://adonixfiles.mywire.org/files/xzadonix_14.m4a';
-  let vn2 = 'https://adonixfiles.mywire.org/files/xzadonix_14.m4a';
+  let vn = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
+  let vn2 = 'https://adonixfiles.mywire.org/files/xzadonix_72.mp3';
   let chat = global.db.data.chats[m.chat];
   const getMentionedJid = () => {
     return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
@@ -72,4 +72,4 @@ export async function before(m, { conn, participants, groupMetadata}) {
       fileName: `despedida.mp3`
 }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
 }
-      }
+          }
