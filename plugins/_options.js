@@ -2,7 +2,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin })
 const primaryBot = global.db.data.chats[m.chat].primaryBot
 if (primaryBot && conn.user.jid !== primaryBot) throw !1
 const chat = global.db.data.chats[m.chat]
-const { antiLink, antiLinks, detect, welcome, modoadmin, nsfw, economy, gacha } = global.db.data.chats[m.chat]
+const { antiLink, antiLinks, detect, welcome, modoadmin, nsfw, economy, gacha, antiprivado } = global.db.data.chats[m.chat]
 let type = command.toLowerCase()
 let isEnable = chat[type] !== undefined ? chat[type] : false
 switch (type) {
@@ -69,6 +69,14 @@ throw false
 }
 chat.gacha = isEnable
 break
+}
+case 'antiprivado': {
+if (m.isGroup && !(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+chat.antiprivado = isEnable
+break
 }}
 if (args[0] === 'on' || args[0] === 'enable') {
 if (isEnable) return conn.reply(m.chat, `✩ *${type}* ya estaba *activado*.`, m)
@@ -83,9 +91,9 @@ chat[type] = isEnable
 conn.reply(m.chat, `> ➬ Has *${isEnable ? 'activado' : 'desactivado'}* *${type}* en este grupo.`, m)
 }
 
-handler.help = ['welcome', 'modoadmin', 'nsfw', 'gacha', 'detect', 'antilink', 'economy']
+handler.help = ['welcome', 'modoadmin', 'nsfw', 'gacha', 'detect', 'antilink', 'economy', 'antiprivado']
 handler.tags = ['nable']
-handler.command = ['welcome', 'bienvenida', 'modoadmin', 'onlyadmin', 'nsfw', 'modohorny', 'economy', 'economia', 'rpg', 'gacha', 'detect', 'alertas', 'antilink', 'antienlace', 'antilinks', 'antienlaces']
+handler.command = ['welcome', 'bienvenida', 'modoadmin', 'onlyadmin', 'nsfw', 'modohorny', 'economy', 'economia', 'rpg', 'gacha', 'detect', 'alertas', 'antilink', 'antienlace', 'antilinks', 'antienlaces', 'antiprivado']
 handler.group = true
 
 export default handler
