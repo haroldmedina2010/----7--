@@ -25,8 +25,9 @@ Esta obra maestra fue posible gracias a la visión y el talento de:
 
 - *Yosue* –
 - *Wirk* – 
-
+- *miku* –
 ---
 
 💡 _SHADOW-BOT-MD no solo responde... se impone._
 Prepárate para llevar tu WhatsApp al siguiente nivel.
+
