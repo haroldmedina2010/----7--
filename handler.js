@@ -25,7 +25,7 @@ export async function handler(chatUpdate) {
     if (!m) return;
 
     let prefixRegex = global.prefix;
-    let usedPrefix = global.prefix || ""; // Valor predeterminado para usedPrefix
+    let usedPrefix = global.prefix || "";
     const senderNumber = this.user.jid.split('@')[0];
     if (!prefixCache.has(senderNumber)) {
         const botPath = path.join('./Sessions/SubBot', senderNumber);
@@ -85,21 +85,21 @@ export async function handler(chatUpdate) {
         economy: true,
         gacha: true
     });
- 
+
     if (chat.isBanned) {
-    
-    const textLower = m.text?.toLowerCase() || ''
-    if (
-        !textLower.startsWith('.unbanchat') &&
-        !textLower.startsWith('/unbanchat') &&
-        !textLower.startsWith('!unbanchat') &&
-        !textLower.startsWith('.desbanearbot') &&
-        !textLower.startsWith('/desbanearbot') &&
-        !textLower.startsWith('!desbanearbot')
-    ) {
-        return
+        const textLower = m.text?.toLowerCase() || '';
+        if (
+            !textLower.startsWith('.unbanchat') &&
+            !textLower.startsWith('/unbanchat') &&
+            !textLower.startsWith('!unbanchat') &&
+            !textLower.startsWith('.desbanearbot') &&
+            !textLower.startsWith('/desbanearbot') &&
+            !textLower.startsWith('!desbanearbot')
+        ) {
+            return;
+        }
     }
- }
+
     const settings = global.db.data.settings[this.user.jid] || (global.db.data.settings[this.user.jid] = {
         self: false,
         restrict: true,
@@ -107,7 +107,7 @@ export async function handler(chatUpdate) {
         antiPrivate: false,
         gponly: false
     });
- 
+
     if (typeof m.text !== "string") m.text = "";
 
     const nuevoNombre = m.pushName || await this.getName(m.sender);
@@ -144,13 +144,26 @@ export async function handler(chatUpdate) {
 
     m.exp += Math.ceil(Math.random() * 10);
 
-    const groupMetadata = m.isGroup ? await this.groupMetadata(m.chat).catch(() => ({})) : {};
-    const participants = m.isGroup ? groupMetadata.participants?.map(p => ({ id: p.jid, jid: p.jid, lid: p.lid, admin: p.admin })) || [] : [];
-    const userGroup = participants.find(u => conn.decodeJid(u.jid) === m.sender) || {};
-    const botGroup = participants.find(u => conn.decodeJid(u.jid) === this.user.jid) || {};
-    const isRAdmin = userGroup?.admin === "superadmin";
-    const isAdmin = isRAdmin || userGroup?.admin === "admin";
-    const isBotAdmin = botGroup?.admin;
+    async function getLidFromJid(id, conn) {
+        if (id.endsWith('@lid')) return id;
+        const res = await conn.onWhatsApp(id).catch(() => []);
+        return res[0]?.lid || id;
+    }
+
+    const groupMetadata = m.isGroup ? (await this.groupMetadata(m.chat).catch(() => ({ participants: [] }))) : {};
+    const participants = m.isGroup ? (groupMetadata.participants || []) : [];
+
+    const senderLid = await getLidFromJid(m.sender, this);
+    const botLid = await getLidFromJid(this.user.jid, this);
+    const senderJid = m.sender;
+    const botJid = this.user.jid;
+
+    const userGroup = participants.find(p => p.id === senderLid || p.id === senderJid) || {};
+    const botGroup = participants.find(p => p.id === botLid || p.id === botJid) || {};
+
+    const isRAdmin = userGroup.admin === "superadmin";
+    const isAdmin = isRAdmin || userGroup.admin === "admin";
+    const isBotAdmin = botGroup.admin === "admin" || botGroup.admin === "superadmin";
 
     const ___dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), "./plugins");
     for (const name in global.plugins) {
@@ -161,7 +174,7 @@ export async function handler(chatUpdate) {
         const match = (pluginPrefix instanceof RegExp
             ? [[pluginPrefix.exec(m.text), pluginPrefix]]
             : Array.isArray(pluginPrefix)
-            ? pluginPrefix.map(p => [p instanceof RegExp ? p : new RegExp(p.replace(/[.*+?^${}()|\[\]\\]/g, '\\$&')).exec(m.text), p])
+            ? pluginPrefix.map(p => [p instanceof RegExp ? p : new RegExp(p.replace(/[.*+?^${}()|\[\]\\]/g, '\\$1')).exec(m.text), p])
             : typeof pluginPrefix === "string"
             ? [[new RegExp(pluginPrefix.replace(/[.*+?^${}()|\[\]\\]/g, '\\$&')).exec(m.text), new RegExp(pluginPrefix)]]
             : [[[], new RegExp]]).find(p => p[1]);
@@ -178,8 +191,8 @@ export async function handler(chatUpdate) {
                 conn: this,
                 participants,
                 groupMetadata,
-                userGroup,
-                botGroup,
+                user: userGroup,
+                bot: botGroup,
                 isROwner,
                 isOwner,
                 isMods,
@@ -190,13 +203,12 @@ export async function handler(chatUpdate) {
                 chatUpdate,
                 __dirname,
                 __filename: join(___dirname, name),
-                user,
                 chat,
                 settings
             })) continue;
         }
 
-        usedPrefix = (match[0] || "")[0]; // Asignación de usedPrefix dentro del bucle
+        usedPrefix = (match[0] || "")[0];
         if (!usedPrefix) continue;
 
         const noPrefix = m.text.replace(usedPrefix, "");
@@ -251,6 +263,16 @@ export async function handler(chatUpdate) {
             global.dfail("group", m, this);
             continue;
         }
+        
+        // ===================================
+        // ===== BLOQUE CORREGIDO AÑADIDO ====
+        // ===================================
+        if (plugin.admin && !isAdmin) {
+            global.dfail("admin", m, this);
+            continue;
+        }
+        // ===================================
+        
         if (plugin.botAdmin && !isBotAdmin) {
             global.dfail("botAdmin", m, this);
             continue;
@@ -283,8 +305,8 @@ export async function handler(chatUpdate) {
                 conn: this,
                 participants,
                 groupMetadata,
-                userGroup,
-                botGroup,
+                user: userGroup,
+                bot: botGroup,
                 isROwner,
                 isOwner,
                 isMods,
@@ -295,7 +317,6 @@ export async function handler(chatUpdate) {
                 chatUpdate,
                 __dirname,
                 __filename: join(___dirname, name),
-                user,
                 chat,
                 settings
             });
@@ -311,8 +332,8 @@ export async function handler(chatUpdate) {
                     conn: this,
                     participants,
                     groupMetadata,
-                    userGroup,
-                    botGroup,
+                    user: userGroup,
+                    bot: botGroup,
                     isROwner,
                     isOwner,
                     isMods,
@@ -323,7 +344,6 @@ export async function handler(chatUpdate) {
                     chatUpdate,
                     __dirname,
                     __filename: join(___dirname, name),
-                    user,
                     chat,
                     settings
                 });
