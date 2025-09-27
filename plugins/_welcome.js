@@ -15,61 +15,45 @@ export async function before(m, { conn, participants, groupMetadata}) {
   let userName = user? user.name: await conn.getName(who);
 
   const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
-  const canalOficial = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O'; // ← canal actualizado
+  const canalOficial = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O';
 
   if (chat.welcome && m.messageStubType === 27) {
-    this.sendMessage(m.chat, {
+    await conn.sendMessage(m.chat, {
       audio: { url: vn},
+      mimetype: 'audio/mp4', // ← usa audio/mp4 para.mp3 si el servidor lo permite
+      ptt: true,
+      fileName: 'bienvenida.mp3',
       contextInfo: {
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363403739366547@newsletter",
-          serverMessageId: '',
-          newsletterName: 'shadow'
-},
-        forwardingScore: 9999999,
-        isForwarded: true,
         mentionedJid: getMentionedJid(),
         externalAdReply: {
           title: `✨ Bienvenido/a ${userName} ✨`,
           body: `¡Nos alegra tenerte aquí en *${groupMetadata.subject}*!`,
-          previewType: "PHOTO",
+          previewType: 'PHOTO',
           thumbnail,
           sourceUrl: canalOficial,
           showAdAttribution: true
 }
-},
-      seconds: '5278263792',
-      ptt: true,
-      mimetype: 'audio/mpeg',
-      fileName: `bienvenida.mp3`
-}, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
+}
+}, { quoted: m});
 }
 
   if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-    this.sendMessage(m.chat, {
+    await conn.sendMessage(m.chat, {
       audio: { url: vn2},
+      mimetype: 'audio/mp4',
+      ptt: true,
+      fileName: 'despedida.mp3',
       contextInfo: {
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363417092486861@newsletter",
-          serverMessageId: '',
-          newsletterName: 'shadow'
-},
-        forwardingScore: 9999999,
-        isForwarded: true,
         mentionedJid: getMentionedJid(),
         externalAdReply: {
           title: `❀ Adiós ${userName} ❀`,
           body: `Esperamos verte de nuevo por *${groupMetadata.subject}*`,
-          previewType: "PHOTO",
+          previewType: 'PHOTO',
           thumbnail,
           sourceUrl: canalOficial,
           showAdAttribution: true
 }
-},
-      seconds: '5278263792',
-      ptt: true,
-      mimetype: 'audio/mpeg',
-      fileName: `despedida.mp3`
-}, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
 }
-                       }
+}, { quoted: m});
+}
+}
