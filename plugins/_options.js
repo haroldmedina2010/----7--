@@ -15,7 +15,11 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
     isEnable = false;
 } else {
     const estado = isEnable? '✓ Activado': '✗ Desactivado';
-    return conn.reply(m.chat, `🌟 *SHADOW-BOT CONTROL*\n━━━━━━━━━━━━━━━━━━━━\n*📜 Un administrador puede activar o desactivar el *${command}* utilizando:*\n\n> ✨ *${usedPrefix}${command} on* – Activar\n> ✨ *${usedPrefix}${command} off* – Desactivar\n\n━━━━━━━━━━━━━━━━━━━━\n🎭 *Estado actual* » *${estado}*`, m);
+    return conn.reply(
+      m.chat,
+      `🌟 *SHADOW-BOT CONTROL*\n━━━━━━━━━━━━━━━━━━━━\n*📜 Un administrador puede activar o desactivar el *${command}* utilizando:*\n\n> ✨ *${usedPrefix}${command} on* – Activar\n> ✨ *${usedPrefix}${command} off* – Desactivar\n\n━━━━━━━━━━━━━━━━━━━━\n🎭 *Estado actual* » *${estado}*`,
+      m
+);
 }
 
   switch (type) {
@@ -43,7 +47,16 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
       bot.antiPrivate = isEnable;
       break;
 
-    //... (los demás casos siguen igual, no se modifican)
+    case 'jadibot':
+      isAll = true;
+      if (!isOwner) {
+        global.dfail('rowner', m, conn);
+        throw false;
+}
+      bot.jadibot = isEnable;
+      break;
+
+    //... (los demás casos siguen igual)
 }
 
   chat[type] = isEnable;
@@ -55,8 +68,8 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
 );
 };
 
-handler.help = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', /*...otros comandos */];
+handler.help = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot'];
 handler.tags = ['nable'];
-handler.command = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', /*...otros comandos */];
+handler.command = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot'];
 
 export default handler;
