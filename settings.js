@@ -30,7 +30,7 @@ global.MichiJadibts = true
 
 global.botname = "Shadow-BOT-MD"
 global.textbot = "Shadow-BOT, yosue"
-global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ yosue"
+global.dev = "shadow"
 global.author = "© mᥲძᥱ ᥕі𝗍һ 𝙮𝙤𝙨𝙪𝙚"
 global.etiqueta = "𝙮𝙤𝙨𝙪𝙚 | 𝟤𝟢𝟤𝟧 ©"
 global.currency = "¢ Pesos"
