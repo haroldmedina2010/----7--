@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 export async function before(m, { conn, participants, groupMetadata}) {
   if (!m.messageStubType ||!m.isGroup) return true;
 
-  let vn = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
-  let vn2 = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
+  let vn = 'https://files.catbox.moe/viiztg.mp3';
+  let vn2 = 'https://files.catbox.moe/u8cr1t.mp3';
   let chat = global.db.data.chats[m.chat];
   const getMentionedJid = () => {
     return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
@@ -18,42 +18,58 @@ export async function before(m, { conn, participants, groupMetadata}) {
   const canalOficial = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O';
 
   if (chat.welcome && m.messageStubType === 27) {
-    await conn.sendMessage(m.chat, {
+    this.sendMessage(m.chat, {
       audio: { url: vn},
-      mimetype: 'audio/mp4',
+      mimetype: 'audio/mpeg',
       ptt: false, // ← cambiado a false
-      fileName: 'bienvenida.mp3',
+      fileName: `bienvenida.mp3`,
       contextInfo: {
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: "120363403739366547@newsletter",
+          serverMessageId: '',
+          newsletterName: 'shadow'
+},
+        forwardingScore: 9999999,
+        isForwarded: true,
         mentionedJid: getMentionedJid(),
         externalAdReply: {
           title: `✨ Bienvenido/a ${userName} ✨`,
           body: `¡Nos alegra tenerte aquí en *${groupMetadata.subject}*!`,
-          previewType: 'PHOTO',
+          previewType: "PHOTO",
           thumbnail,
           sourceUrl: canalOficial,
           showAdAttribution: true
 }
-}
-}, { quoted: m});
+},
+      seconds: '5278263792'
+}, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
 }
 
   if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-    await conn.sendMessage(m.chat, {
+    this.sendMessage(m.chat, {
       audio: { url: vn2},
-      mimetype: 'audio/mp4',
+      mimetype: 'audio/mpeg',
       ptt: false, // ← cambiado a false
-      fileName: 'despedida.mp3',
+      fileName: `despedida.mp3`,
       contextInfo: {
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: "120363403739366547@newsletter",
+          serverMessageId: '',
+          newsletterName: 'shadow'
+},
+        forwardingScore: 9999999,
+        isForwarded: true,
         mentionedJid: getMentionedJid(),
         externalAdReply: {
           title: `❀ Adiós ${userName} ❀`,
           body: `Esperamos verte de nuevo por *${groupMetadata.subject}*`,
-          previewType: 'PHOTO',
+          previewType: "PHOTO",
           thumbnail,
           sourceUrl: canalOficial,
           showAdAttribution: true
 }
-}
-}, { quoted: m});
+},
+      seconds: '5278263792'
+}, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
 }
         }
