@@ -1,31 +1,31 @@
 import fetch from 'node-fetch';
 
-export async function before(m, { conn, participants, groupMetadata }) {
-  if (!m.messageStubType || !m.isGroup) return true;
+export async function before(m, { conn, participants, groupMetadata}) {
+  if (!m.messageStubType ||!m.isGroup) return true;
 
   let vn = 'https://files.catbox.moe/pazabz.m4a';
   let vn2 = 'https://files.catbox.moe/t3j0sv.m4a';
   let chat = global.db.data.chats[m.chat];
   const getMentionedJid = () => {
     return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
-  };
+};
 
   let who = m.messageStubParameters[0] + '@s.whatsapp.net';
   let user = global.db.data.users[who];
-  let userName = user ? user.name : await conn.getName(who);
+  let userName = user? user.name: await conn.getName(who);
 
   const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
-  const redes = 'https://chat.whatsapp.com/tu-grupo'; // Ajustá si querés un link real
+  const redes = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O'; // ← canal actualizado
 
   if (chat.welcome && m.messageStubType === 27) {
     this.sendMessage(m.chat, {
-      audio: { url: vn },
+      audio: { url: vn},
       contextInfo: {
         forwardedNewsletterMessageInfo: {
           newsletterJid: "120363417092486861@newsletter",
           serverMessageId: '',
           newsletterName: 'shadow'
-        },
+},
         forwardingScore: 9999999,
         isForwarded: true,
         mentionedJid: getMentionedJid(),
@@ -36,24 +36,24 @@ export async function before(m, { conn, participants, groupMetadata }) {
           thumbnail,
           sourceUrl: redes,
           showAdAttribution: true
-        }
-      },
+}
+},
       seconds: '5278263792',
       ptt: true,
       mimetype: 'audio/mpeg',
       fileName: `bienvenida.mp3`
-    }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100 });
-  }
+}, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
+}
 
   if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
     this.sendMessage(m.chat, {
-      audio: { url: vn2 },
+      audio: { url: vn2},
       contextInfo: {
         forwardedNewsletterMessageInfo: {
           newsletterJid: "120363417092486861@newsletter",
           serverMessageId: '',
           newsletterName: 'shadow'
-        },
+},
         forwardingScore: 9999999,
         isForwarded: true,
         mentionedJid: getMentionedJid(),
@@ -64,12 +64,12 @@ export async function before(m, { conn, participants, groupMetadata }) {
           thumbnail,
           sourceUrl: redes,
           showAdAttribution: true
-        }
-      },
+}
+},
       seconds: '5278263792',
       ptt: true,
       mimetype: 'audio/mpeg',
       fileName: `despedida.mp3`
-    }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100 });
-  }
-          }
+}, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100});
+}
+                                                }
