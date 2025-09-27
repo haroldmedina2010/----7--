@@ -1,77 +1,75 @@
-import fs from 'fs'
-import { WAMessageStubType } from '@whiskeysockets/baileys'
+import fetch from 'node-fetch';
 
-async function generarBienvenida({ conn, userId, groupMetadata, chat }) {
-  const username = `@${userId.split('@')[0]}`
-  const pp = await conn.profilePictureUrl(userId, 'image').catch(() => 
-    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-  )
-  const fecha = new Date().toLocaleDateString("es-ES", {
-    timeZone: "America/Mexico_City",
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-  const groupSize = groupMetadata.participants.length + 1
-  const desc = groupMetadata.desc?.toString() || 'Sin descripción'
-  const mensaje = (chat.sWelcome || 'Edita con el comando "setwelcome"')
-    .replace(/{usuario}/g, `${username}`)
-    .replace(/{grupo}/g, `*${groupMetadata.subject}*`)
-    .replace(/{desc}/g, `${desc}`)
+export async function before(m, { conn, participants, groupMetadata }) {
+  if (!m.messageStubType || !m.isGroup) return true;
 
-  const caption = `ꕤ \`Bienvenida\` ꕤ\n\n✐ *Hola* ${username}\n⊹ Te damos la bienvenida a *${groupMetadata.subject}*\n⊹ ${mensaje}\n⊹ ${desc}\n✦ Ahora somos *${groupSize}* miembros\nꕥ Fecha » ${fecha}\n\n> \`Esperamos que disfrutes tu estadía 🤍\``
-  return { pp, caption, mentions: [userId] }
-}
+  let vn = 'https://files.catbox.moe/pazabz.m4a';
+  let vn2 = 'https://files.catbox.moe/t3j0sv.m4a';
+  let chat = global.db.data.chats[m.chat];
+  const getMentionedJid = () => {
+    return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
+  };
 
-async function generarDespedida({ conn, userId, groupMetadata, chat }) {
-  const username = `@${userId.split('@')[0]}`
-  const pp = await conn.profilePictureUrl(userId, 'image').catch(() => 
-    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-  )
-  const fecha = new Date().toLocaleDateString("es-ES", {
-    timeZone: "America/Mexico_City",
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-  const groupSize = groupMetadata.participants.length - 1
-  const desc = groupMetadata.desc?.toString() || 'Sin descripción'
-  const mensaje = (chat.sBye || 'Edita con el comando "setbye"')
-    .replace(/{usuario}/g, `${username}`)
-    .replace(/{grupo}/g, `${groupMetadata.subject}`)
-    .replace(/{desc}/g, `*${desc}*`)
+  let who = m.messageStubParameters[0] + '@s.whatsapp.net';
+  let user = global.db.data.users[who];
+  let userName = user ? user.name : await conn.getName(who);
 
-  const caption = `ꕤ \`Despedida\` ꕤ\n\n✐ ${username} *ha salido del grupo*\n⊹ Grupo » *${groupMetadata.subject}*\n⊹ ${mensaje}\n⊹ ${desc}\n✦ Ahora somos *${groupSize}* miembros\nꕥ Fecha » ${fecha}\n\n> \`Te esperamos pronto 🤍\``
-  return { pp, caption, mentions: [userId] }
-}
+  const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
+  const redes = 'https://chat.whatsapp.com/tu-grupo'; // Ajustá si querés un link real
 
-let handler = m => m
-handler.before = async function (m, { conn, participants, groupMetadata }) {
-  if (!m.messageStubType || !m.isGroup) return !0
-
-  const primaryBot = global.db.data.chats[m.chat].primaryBot
-  if (primaryBot && conn.user.jid !== primaryBot) throw !1
-
-  const chat = global.db.data.chats[m.chat]
-  const userId = m.messageStubParameters[0]
-
-  if (chat.welcome && m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_ADD) {
-    const { pp, caption, mentions } = await generarBienvenida({ conn, userId, groupMetadata, chat })
-    rcanal.contextInfo.mentionedJid = mentions
-    await conn.sendMessage(m.chat, { image: { url: pp }, caption, ...rcanal }, { quoted: null })
-    try { fs.unlinkSync(img) } catch {}
+  if (chat.welcome && m.messageStubType === 27) {
+    this.sendMessage(m.chat, {
+      audio: { url: vn },
+      contextInfo: {
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: "120363417092486861@newsletter",
+          serverMessageId: '',
+          newsletterName: 'shadow'
+        },
+        forwardingScore: 9999999,
+        isForwarded: true,
+        mentionedJid: getMentionedJid(),
+        externalAdReply: {
+          title: `✨ Bienvenido/a ${userName} ✨`,
+          body: `¡Nos alegra tenerte aquí en *${groupMetadata.subject}*!`,
+          previewType: "PHOTO",
+          thumbnail,
+          sourceUrl: redes,
+          showAdAttribution: true
+        }
+      },
+      seconds: '5278263792',
+      ptt: true,
+      mimetype: 'audio/mpeg',
+      fileName: `bienvenida.mp3`
+    }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100 });
   }
 
-  if (chat.welcome && (
-    m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
-    m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_LEAVE
-  )) {
-    const { pp, caption, mentions } = await generarDespedida({ conn, userId, groupMetadata, chat })
-    rcanal.contextInfo.mentionedJid = mentions
-    await conn.sendMessage(m.chat, { image: { url: pp }, caption, ...rcanal }, { quoted: null })
-    try { fs.unlinkSync(img) } catch {}
+  if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
+    this.sendMessage(m.chat, {
+      audio: { url: vn2 },
+      contextInfo: {
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: "120363417092486861@newsletter",
+          serverMessageId: '',
+          newsletterName: 'shadow'
+        },
+        forwardingScore: 9999999,
+        isForwarded: true,
+        mentionedJid: getMentionedJid(),
+        externalAdReply: {
+          title: `❀ Adiós ${userName} ❀`,
+          body: `Esperamos verte de nuevo por *${groupMetadata.subject}*`,
+          previewType: "PHOTO",
+          thumbnail,
+          sourceUrl: redes,
+          showAdAttribution: true
+        }
+      },
+      seconds: '5278263792',
+      ptt: true,
+      mimetype: 'audio/mpeg',
+      fileName: `despedida.mp3`
+    }, { quoted: fkontak, ephemeralExpiration: 24 * 60 * 100, disappearingMessagesInChat: 24 * 60 * 100 });
   }
-}
-
-export { generarBienvenida, generarDespedida }
-export default handler
+          }
