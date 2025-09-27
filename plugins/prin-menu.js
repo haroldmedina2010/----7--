@@ -77,6 +77,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         {
           video: { url: global.michipg },
           caption: txt
+          gifPlayback: false
         },
         { quoted: m }
       )
