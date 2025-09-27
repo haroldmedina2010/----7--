@@ -1,59 +1,77 @@
-import fetch from 'node-fetch';
+import fs from 'fs'
+import { WAMessageStubType } from '@whiskeysockets/baileys'
 
-export async function before(m, { conn, participants, groupMetadata}) {
-  if (!m.messageStubType ||!m.isGroup) return true;
+async function generarBienvenida({ conn, userId, groupMetadata, chat }) {
+  const username = `@${userId.split('@')[0]}`
+  const pp = await conn.profilePictureUrl(userId, 'image').catch(() => 
+    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
+  )
+  const fecha = new Date().toLocaleDateString("es-ES", {
+    timeZone: "America/Mexico_City",
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  })
+  const groupSize = groupMetadata.participants.length + 1
+  const desc = groupMetadata.desc?.toString() || 'Sin descripción'
+  const mensaje = (chat.sWelcome || 'Edita con el comando "setwelcome"')
+    .replace(/{usuario}/g, `${username}`)
+    .replace(/{grupo}/g, `*${groupMetadata.subject}*`)
+    .replace(/{desc}/g, `${desc}`)
 
-  let vn = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
-  let vn2 = 'https://adonixfiles.mywire.org/files/xzadonix_26.mp3';
-  let chat = global.db.data.chats[m.chat];
-  const getMentionedJid = () => {
-    return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
-};
-
-  let who = m.messageStubParameters[0] + '@s.whatsapp.net';
-  let user = global.db.data.users[who];
-  let userName = user? user.name: await conn.getName(who);
-
-  const thumbnail = await (await fetch('https://files.catbox.moe/uak1qu.jpg')).buffer();
-  const canalOficial = 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O';
-
-  if (chat.welcome && m.messageStubType === 27) {
-    await conn.sendMessage(m.chat, {
-      audio: { url: vn},
-      mimetype: 'audio/mp4', // ← usa audio/mp4 para.mp3 si el servidor lo permite
-      ptt: true,
-      fileName: 'bienvenida.mp3',
-      contextInfo: {
-        mentionedJid: getMentionedJid(),
-        externalAdReply: {
-          title: `✨ Bienvenido/a ${userName} ✨`,
-          body: `¡Nos alegra tenerte aquí en *${groupMetadata.subject}*!`,
-          previewType: 'PHOTO',
-          thumbnail,
-          sourceUrl: canalOficial,
-          showAdAttribution: true
-}
-}
-}, { quoted: m});
+  const caption = `ꕤ \`Bienvenida\` ꕤ\n\n✐ *Hola* ${username}\n⊹ Te damos la bienvenida a *${groupMetadata.subject}*\n⊹ ${mensaje}\n⊹ ${desc}\n✦ Ahora somos *${groupSize}* miembros\nꕥ Fecha » ${fecha}\n\n> \`Esperamos que disfrutes tu estadía 🤍\``
+  return { pp, caption, mentions: [userId] }
 }
 
-  if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-    await conn.sendMessage(m.chat, {
-      audio: { url: vn2},
-      mimetype: 'audio/mp4',
-      ptt: true,
-      fileName: 'despedida.mp3',
-      contextInfo: {
-        mentionedJid: getMentionedJid(),
-        externalAdReply: {
-          title: `❀ Adiós ${userName} ❀`,
-          body: `Esperamos verte de nuevo por *${groupMetadata.subject}*`,
-          previewType: 'PHOTO',
-          thumbnail,
-          sourceUrl: canalOficial,
-          showAdAttribution: true
+async function generarDespedida({ conn, userId, groupMetadata, chat }) {
+  const username = `@${userId.split('@')[0]}`
+  const pp = await conn.profilePictureUrl(userId, 'image').catch(() => 
+    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
+  )
+  const fecha = new Date().toLocaleDateString("es-ES", {
+    timeZone: "America/Mexico_City",
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  })
+  const groupSize = groupMetadata.participants.length - 1
+  const desc = groupMetadata.desc?.toString() || 'Sin descripción'
+  const mensaje = (chat.sBye || 'Edita con el comando "setbye"')
+    .replace(/{usuario}/g, `${username}`)
+    .replace(/{grupo}/g, `${groupMetadata.subject}`)
+    .replace(/{desc}/g, `*${desc}*`)
+
+  const caption = `ꕤ \`Despedida\` ꕤ\n\n✐ ${username} *ha salido del grupo*\n⊹ Grupo » *${groupMetadata.subject}*\n⊹ ${mensaje}\n⊹ ${desc}\n✦ Ahora somos *${groupSize}* miembros\nꕥ Fecha » ${fecha}\n\n> \`Te esperamos pronto 🤍\``
+  return { pp, caption, mentions: [userId] }
 }
+
+let handler = m => m
+handler.before = async function (m, { conn, participants, groupMetadata }) {
+  if (!m.messageStubType || !m.isGroup) return !0
+
+  const primaryBot = global.db.data.chats[m.chat].primaryBot
+  if (primaryBot && conn.user.jid !== primaryBot) throw !1
+
+  const chat = global.db.data.chats[m.chat]
+  const userId = m.messageStubParameters[0]
+
+  if (chat.welcome && m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_ADD) {
+    const { pp, caption, mentions } = await generarBienvenida({ conn, userId, groupMetadata, chat })
+    rcanal.contextInfo.mentionedJid = mentions
+    await conn.sendMessage(m.chat, { image: { url: pp }, caption, ...rcanal }, { quoted: null })
+    try { fs.unlinkSync(img) } catch {}
+  }
+
+  if (chat.welcome && (
+    m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
+    m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_LEAVE
+  )) {
+    const { pp, caption, mentions } = await generarDespedida({ conn, userId, groupMetadata, chat })
+    rcanal.contextInfo.mentionedJid = mentions
+    await conn.sendMessage(m.chat, { image: { url: pp }, caption, ...rcanal }, { quoted: null })
+    try { fs.unlinkSync(img) } catch {}
+  }
 }
-}, { quoted: m});
-}
-                           }
+
+export { generarBienvenida, generarDespedida }
+export default handler
