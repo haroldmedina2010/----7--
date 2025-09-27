@@ -8,7 +8,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
 
   switch (type) {
     case 'welcome': case 'bienvenida': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -16,7 +16,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'modoadmin': case 'onlyadmin': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -24,7 +24,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'detect': case 'alertas': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -32,7 +32,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'antilink': case 'antienlace': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -40,7 +40,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'antilinks': case 'antienlaces': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -48,7 +48,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'nsfw': case 'modohorny': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -56,7 +56,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'economy': case 'economia': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -64,7 +64,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
       break
 }
     case 'rpg': case 'gacha': {
-      if (m.isGroup &&!(isAdmin || isOwner)) {
+      if (!isOwner && m.isGroup &&!isAdmin) {
         global.dfail('admin', m, conn)
         throw false
 }
@@ -92,12 +92,18 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin}) 
 }
 
   chat[type] = isEnable
-  conn.reply(m.chat, `> ➬ Has *${isEnable? 'activado': 'desactivado'}* *${type}* en este grupo.`, m)
+
+  // Mensaje especial si se activa antiprivado
+  if (type === 'antiprivado') {
+    return conn.reply(m.chat, `🕶️ *Modo antiprivado ${isEnable? 'activado': 'desactivado'}.*\nLos usuarios que escriban al bot en privado serán ${isEnable? 'bloqueados automáticamente': 'permitidos nuevamente'}.`, m)
+}
+
+  conn.reply(m.chat, `> ➬ Has *${isEnable? 'activado': 'desactivado'}* *${type}* en este ${m.isGroup? 'grupo': 'chat privado'}.`, m)
 }
 
 handler.help = ['welcome', 'modoadmin', 'nsfw', 'gacha', 'detect', 'antilink', 'economy', 'antiprivado']
 handler.tags = ['nable']
 handler.command = ['welcome', 'bienvenida', 'modoadmin', 'onlyadmin', 'nsfw', 'modohorny', 'economy', 'economia', 'rpg', 'gacha', 'detect', 'alertas', 'antilink', 'antienlace', 'antilinks', 'antienlaces', 'antiprivado']
-handler.group = true
+handler.group = false
 
 export default handler
