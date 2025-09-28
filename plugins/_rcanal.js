@@ -5,7 +5,7 @@ export async function before(m, { conn }) {
   try {
 
     let nombreBot = global.botname || 'Bot'
-    let bannerFinal = 'https://files.catbox.moe/wp5z1y.jpg'
+    let bannerFinal = 'https://adonixfiles.mywire.org/files/xzadonix_40.jpg'
 
 
     const botActual = conn.user?.jid?.split('@')[0].replace(/\D/g, '')
@@ -37,7 +37,7 @@ export async function before(m, { conn }) {
         },
         externalAdReply: {
           title: nombreBot,
-          body: "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝗔𝗱𝗼",
+          body: "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ 𝙮𝙤𝙨𝙪𝙚",
           thumbnailUrl: bannerFinal,
           sourceUrl: "api-adonix.ultraplus.click",
           mediaType: 1,
