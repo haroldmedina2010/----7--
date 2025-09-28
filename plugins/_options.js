@@ -17,7 +17,7 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
     const estado = isEnable? '✓ Activado': '✗ Desactivado';
     return conn.reply(
       m.chat,
-      `🌟 *SHADOW-BOT CONTROL*\n━━━━━━━━━━━━━━━━━━━━\n*📜 Un administrador puede activar o desactivar el *${command}* utilizando:*\n\n> ✨ *${usedPrefix}${command} on* – Activar\n> ✨ *${usedPrefix}${command} off* – Desactivar\n\n━━━━━━━━━━━━━━━━━━━━\n🎭 *Estado actual* » *${estado}*`,
+      `🌟 *SHADOW-BOT CONTROL*\n━━━━━━━━━━━━━━━━━━━━\n📜 *Un administrador puede activar o desactivar la función* *${command}* usando:\n\n> ✨ *${usedPrefix}${command} on* – Activar\n> ✨ *${usedPrefix}${command} off* – Desactivar\n\n━━━━━━━━━━━━━━━━━━━━\n🎭 *Estado actual* » *${estado}*`,
       m
 );
 }
@@ -67,6 +67,17 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
       chat.antilink = isEnable;
       break;
 
+    case 'antisubbots':
+      if (!m.isGroup &&!isOwner) {
+        global.dfail('group', m, conn);
+        throw false;
+} else if (m.isGroup &&!isAdmin) {
+        global.dfail('admin', m, conn);
+        throw false;
+}
+      chat.antisubbots = isEnable;
+      break;
+
     // Puedes seguir agregando más funciones aquí si lo deseas
 }
 
@@ -79,8 +90,8 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
 );
 };
 
-handler.help = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot', 'antilink'];
+handler.help = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot', 'antilink', 'antisubbots'];
 handler.tags = ['nable'];
-handler.command = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot', 'antilink'];
+handler.command = ['welcome', 'bv', 'bienvenida', 'antiprivado', 'antipriv', 'antiprivate', 'jadibot', 'antilink', 'antisubbots'];
 
 export default handler;
