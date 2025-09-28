@@ -1,47 +1,86 @@
-import fetch from 'node-fetch';
+let proposals = {};   // 💌 Propuestas pendientes
+let marriages = {};   // 💍 Matrimonios confirmados
 
-let marriages = {}; // 💾 Base de datos temporal de matrimonios
+const handler = async (m, { conn, args, usedPrefix, command}) => {
+  const userId = m.sender;
+  const mentioned = m.mentionedJid[0];
 
-const handler = async (m, { conn, args}) => {
-    const userId = m.sender;
+  // 💔 Comando para divorciarse
+  if (command === 'divorce') {
+    if (!marriages[userId]) {
+      return conn.reply(m.chat, '💔 *No estás casado con nadie.*', m);
+}
 
-    // 📝 Validación de argumento
-    if (!args[0]) {
-        return conn.reply(
-            m.chat,
-            `💍 *¿Con quién deseas casarte?*\n\n🔹 Usa el comando seguido del usuario:\n> *${usedPrefix}marry @usuario*`,
-            m
+    const ex = marriages[userId];
+    delete marriages[userId];
+    delete marriages[ex];
+
+    return conn.reply(
+      m.chat,
+      `💔 *Divorcio realizado.*\n@${userId.split('@')[0]} y @${ex.split('@')[0]} ya no están casados.`,
+      m,
+      { mentions: [userId, ex]}
 );
 }
 
-    // 🧠 Procesar ID del compañero
-    const partnerId = args[0].replace('@', '') + '@s.whatsapp.net';
-
-    // ❌ No puedes casarte contigo mismo
-    if (partnerId === userId) {
-        return conn.reply(m.chat, '💔 *No puedes casarte contigo mismo. Busca a alguien más...*', m);
+  // 💍 Comando para casarse
+  if (!mentioned) {
+    return conn.reply(
+      m.chat,
+      `💍 *¿Con quién deseas casarte?*\n\n🔹 Usa el comando así:\n> *${usedPrefix}marry @usuario*`,
+      m
+);
 }
 
-    // 🔐 Verificar si ya están casados
-    if (marriages[userId] || marriages[partnerId]) {
-        return conn.reply(m.chat, '⚠️ *Uno de los dos ya está casado. No se permiten triángulos amorosos.*', m);
+  const partnerId = mentioned;
+
+  if (partnerId === userId) {
+    return conn.reply(m.chat, '💔 *No puedes casarte contigo mismo.*', m);
 }
 
-    // 💾 Registrar matrimonio
+  if (marriages[userId] || marriages[partnerId]) {
+    return conn.reply(m.chat, '⚠️ *Uno de los dos ya está casado.*', m);
+}
+
+  // 💌 Si el otro ya propuso antes, se confirma el matrimonio
+  if (proposals[partnerId] === userId) {
     marriages[userId] = partnerId;
     marriages[partnerId] = userId;
+    delete proposals[userId];
+    delete proposals[partnerId];
 
-    // 🎉 Mensaje de celebración
-    const userTag = '@' + userId.split('@')[0];
-    const partnerTag = '@' + partnerId.split('@')[0];
+    return conn.reply(
+      m.chat,
+      `💒 *¡Felicitaciones!*\n@${userId.split('@')[0]} y @${partnerId.split('@')[0]} ahora están oficialmente casados.\n\n🎊 Que las sombras bendigan esta unión.`,
+      m,
+      { mentions: [userId, partnerId]}
+);
+}
 
-    conn.reply(
+  // 💌 Registrar propuesta y esperar confirmación
+  proposals[userId] = partnerId;
+
+  conn.reply(
+    m.chat,
+    `💌 *Propuesta enviada a @${partnerId.split('@')[0]}*\nDebe responder con:\n> *${usedPrefix}marry @${userId.split('@')[0]}*\n\n⏳ Tienes 20 minutos para aceptar o se cancelará.`,
+    m,
+    { mentions: [partnerId]}
+);
+
+  // ⏳ Cancelar si no responde en 20 minutos
+  setTimeout(() => {
+    if (proposals[userId] === partnerId) {
+      delete proposals[userId];
+      conn.reply(
         m.chat,
-        `💒 *¡Felicitaciones!*\n${userTag} y ${partnerTag} ahora están oficialmente casados.\n\n🎊 Que las sombras bendigan esta unión.`,
-        m,
+        `⌛ *La propuesta de matrimonio entre @${userId.split('@')[0]} y @${partnerId.split('@')[0]} ha expirado.*`,
+        null,
         { mentions: [userId, partnerId]}
 );
+}
+}, 20 * 60 * 1000); // 20 minutos
 };
 
-handler.command = ['marry', 'casarse'];
+handler.command = ['marry', 'casarse', 'divorce', 'divorciarse'];
+handler.group = true;
 export default handler;
