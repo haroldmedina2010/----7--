@@ -5,8 +5,8 @@ const handler = async (m, { conn, args, usedPrefix, command}) => {
   const userId = m.sender;
   const mentioned = m.mentionedJid[0];
 
-  // 💔 Comando para divorciarse
-  if (command === 'divorce') {
+  // 💔 DIVORCIO
+  if (command === 'divorce' || command === 'divorciarse') {
     if (!marriages[userId]) {
       return conn.reply(m.chat, '💔 *No estás casado con nadie.*', m);
 }
@@ -23,7 +23,7 @@ const handler = async (m, { conn, args, usedPrefix, command}) => {
 );
 }
 
-  // 💍 Comando para casarse
+  // 💍 MATRIMONIO
   if (!mentioned) {
     return conn.reply(
       m.chat,
