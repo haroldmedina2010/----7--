@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix}) => {
 
     let botNameToShow = global.botname || ""
     let bannerUrl = global.michipg || ""
-    let videoUrl = 'https://adonixfiles.mywire.org/files/xzadonix_81.mp4' // ← URL de video de ejemplo
+    let videoUrl = 'https://qu.ax/Euoqo.mp4' // ← URL de video de ejemplo
 
     const senderBotNumber = conn.user.jid.split('@')[0]
     const configPath = path.join('./Sessions/SubBot', senderBotNumber, 'config.json')
