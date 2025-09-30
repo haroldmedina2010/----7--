@@ -1,5 +1,5 @@
 
-![shadow-bot-MD](https://qu.ax/ZWPWf.jpg)
+![shadow-bot-MD](https://qu.ax/XQTKc.jpg)
 
 *SHADOW-BOT-MD*
 
@@ -30,6 +30,7 @@ Esta obra maestra fue posible gracias a la visión y el talento de:
 
 💡 _SHADOW-BOT-MD no solo responde... se impone._
 Prepárate para llevar tu WhatsApp al siguiente nivel.
+
 
 
 
