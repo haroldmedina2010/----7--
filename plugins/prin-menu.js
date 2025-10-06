@@ -20,9 +20,9 @@ let handler = async (m, { conn, usedPrefix}) => {
     let seconds = Math.floor(uptimeSec % 60)
     let uptimeStr = `${hours}h ${minutes}m ${seconds}s`
 
-    let botNameToShow = global.botname || ""
+    let botNameToShow = global.botname || "Shadow"
     let bannerUrl = global.michipg || ""
-    let videoUrl = 'https://qu.ax/Euoqo.mp4' // ← URL de video de ejemplo
+    let videoUrl = "https://adonixfiles.mywire.org/files/xzadonix_07.mp4" // ← URL directa del video tipo GIF
 
     const senderBotNumber = conn.user.jid.split('@')[0]
     const configPath = path.join('./Sessions/SubBot', senderBotNumber, 'config.json')
@@ -35,22 +35,26 @@ let handler = async (m, { conn, usedPrefix}) => {
 } catch (e) { console.error(e)}
 }
 
-    let txt = `>.・。.・゜〄・.・〄・゜・。.\n`
-    txt += `✐ *Hola! Soy ${botNameToShow}* ${(conn.user.jid == global.conn.user.jid? 'Principal 🅥': 'Sub Bot 🅑')}\n`
-    txt += `> ⊹ *Hora* » ${moment.tz("America/Tegucigalpa").format("HH:mm:ss")}\n`
-    txt += `> ⊹ *Fecha* » ${moment.tz("America/Tegucigalpa").format("DD/MM/YYYY")}\n\n`
+    let txt = `🎃 𝑴𝒖𝒚 𝒑𝒓𝒐𝒏𝒕𝒐 𝒆𝒏 𝑯𝒂𝒍𝒍𝒐𝒘𝒆𝒆𝒏, 𝒎𝒐𝒓𝒕𝒂𝒍𝒆𝒔...
+𝐒𝐨𝐲 *${botNameToShow}*, 𝐞𝐥 𝐬𝐞𝐫 𝐞𝐧 𝐥𝐚𝐬 𝐬𝐨𝐦𝐛𝐫𝐚𝐬 ${(conn.user.jid == global.conn.user.jid? '(𝐏𝐫𝐢𝐧𝐜𝐢𝐩𝐚𝐥 🅥)': '(𝐒𝐮𝐛-𝐁𝐨𝐭 🅑)')}
+
+🕒 *Hora:* ${moment.tz("America/Tegucigalpa").format("HH:mm:ss")}
+📅 *Fecha:* ${moment.tz("America/Tegucigalpa").format("DD/MM/YYYY")}
+⚙️ *Actividad:* ${uptimeStr}
+
+🕸️ Canal de las sombras: https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O
+
+🦇 𝐄𝐬𝐭𝐨𝐬 𝐬𝐨𝐧 𝐥𝐨𝐬 𝐜𝐨𝐦𝐚𝐧𝐝𝐨𝐬 𝐝𝐞 𝐥𝐚 𝐨𝐬𝐜𝐮𝐫𝐢𝐝𝐚𝐝:\n\n`
 
     for (let tag in menu) {
-      txt += `➭ *✿》${tag.toUpperCase()}《✿*\n`
+      txt += `*» 🕷️ ${tag.toUpperCase()} 🕷️*\n`
       for (let plugin of menu[tag]) {
         for (let cmd of plugin.help) {
-          txt += `> ⟩ *${usedPrefix}${cmd}*\n`
+          txt += `> 🦴 ${usedPrefix + cmd}\n`
 }
 }
       txt += `\n`
 }
-
-    txt += `>: *Actividad* » ${uptimeStr}`
 
     if (videoUrl) {
       await conn.sendMessage(
@@ -58,7 +62,17 @@ let handler = async (m, { conn, usedPrefix}) => {
         {
           video: { url: videoUrl},
           caption: txt,
-          gifPlayback: false
+          gifPlayback: true,
+          contextInfo: {
+            isForwarded: true,
+            forwardingScore: 999,
+            externalAdReply: {
+              title: '🕸️ Sʜᴀᴅᴏᴡ Bᴏᴛ - Mᴇɴᴜ́ ᴅᴇ ʟᴀ ᴏsᴄᴜʀɪᴅᴀᴅ 🦇',
+              thumbnailUrl: bannerUrl,
+              mediaType: 1,
+              renderLargerThumbnail: false
+}
+}
 },
         { quoted: m}
 )
@@ -66,7 +80,7 @@ let handler = async (m, { conn, usedPrefix}) => {
       await conn.sendMessage(
         m.chat,
         {
-          image: { url: bannerUrl},
+          video: { url: bannerUrl},
           caption: txt
 },
         { quoted: m}
@@ -75,9 +89,8 @@ let handler = async (m, { conn, usedPrefix}) => {
       await conn.sendMessage(
         m.chat,
         {
-          video: { url: global.michipg},
-          caption: txt,
-          gifPlayback: false
+          image: { url: global.michipg},
+          caption: txt
 },
         { quoted: m}
 )
@@ -85,7 +98,7 @@ let handler = async (m, { conn, usedPrefix}) => {
 
 } catch (e) {
     console.error(e)
-    conn.reply(m.chat, "» Ocurrió un error.", m)
+    conn.reply(m.chat, "👻 Ocurrió un error en las sombras...", m)
 }
 }
 
