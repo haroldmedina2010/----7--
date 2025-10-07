@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix}) => {
 
     let botNameToShow = global.botname || "Shadow"
     let bannerUrl = global.michipg || ""
-    let videoUrl = "https://adonixfiles.mywire.org/files/xzadonix_07.mp4" // ← URL directa del video tipo GIF
+    let videoUrl = "https://adonixfiles.mywire.org/files/xzadonix_07.mp4"
 
     const senderBotNumber = conn.user.jid.split('@')[0]
     const configPath = path.join('./Sessions/SubBot', senderBotNumber, 'config.json')
@@ -46,15 +46,22 @@ let handler = async (m, { conn, usedPrefix}) => {
 
 🦇 𝐄𝐬𝐭𝐨𝐬 𝐬𝐨𝐧 𝐥𝐨𝐬 𝐜𝐨𝐦𝐚𝐧𝐝𝐨𝐬 𝐝𝐞 𝐥𝐚 𝐨𝐬𝐜𝐮𝐫𝐢𝐝𝐚𝐝:\n\n`
 
+    const halloweenEmojis = ['👹','👻','🎃','🧙🏻‍♀️','🧟','🧟‍♀️','🧛🏻','🧛🏻‍♀️','🦇','🕸️','🕷️','🧙🏻‍♂️','🧹']
+    let emojiIndex = 0
+
     for (let tag in menu) {
       txt += `*» 🕷️ ${tag.toUpperCase()} 🕷️*\n`
       for (let plugin of menu[tag]) {
         for (let cmd of plugin.help) {
-          txt += `> 🦴 ${usedPrefix + cmd}\n`
+          let emoji = halloweenEmojis[emojiIndex % halloweenEmojis.length]
+          txt += `> ${emoji} ${usedPrefix + cmd}\n`
+          emojiIndex++
 }
 }
       txt += `\n`
 }
+
+    const fallbackImage = bannerUrl || global.michipg || 'https://files.catbox.moe/pk3xxk.jpg'
 
     if (videoUrl) {
       await conn.sendMessage(
@@ -68,7 +75,7 @@ let handler = async (m, { conn, usedPrefix}) => {
             forwardingScore: 999,
             externalAdReply: {
               title: '🕸️ Sʜᴀᴅᴏᴡ Bᴏᴛ - Mᴇɴᴜ́ ᴅᴇ ʟᴀ ᴏsᴄᴜʀɪᴅᴀᴅ 🦇',
-              thumbnailUrl: bannerUrl,
+              thumbnailUrl: fallbackImage,
               mediaType: 1,
               renderLargerThumbnail: false
 }
@@ -89,7 +96,7 @@ let handler = async (m, { conn, usedPrefix}) => {
       await conn.sendMessage(
         m.chat,
         {
-          image: { url: global.michipg},
+          image: { url: 'https://files.catbox.moe/pk3xxk.jpg'},
           caption: txt
 },
         { quoted: m}
