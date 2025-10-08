@@ -1,9 +1,49 @@
 import axios from 'axios';
-const handler = async (m, {command, conn, usedPrefix}) => {
-const res = (await axios.get(`https://raw.githubusercontent.com/SheZiR/YaemoriBot-MD/master/src/JSON/anime-${command}.json`)).data;
-const haha = await res[Math.floor(res.length * Math.random())];
-conn.sendFile(m.chat, haha, 'error.jpg', `🍟 *${command}*`, m, null, rcanal);
+
+const categoriasValidas = [
+  'waifu', 'husbando', 'kitsune', 'neko', 'kemonomimi',
+  'smug', 'wink', 'cry', 'dance', 'hug', 'pat', 'smile'
+];
+
+const handler = async (m, { command, conn}) => {
+  try {
+    const res = await axios.get('https://api.kirito.my/api/anime?apikey=by_deylin');
+    const images = res.data.images;
+
+    if (!images || images.length === 0) throw 'No se encontraron imágenes';
+
+    // Filtra imágenes que contengan el nombre del comando en la URL
+    const filtradas = images.filter(url => url.toLowerCase().includes(command.toLowerCase()));
+
+    // Si no hay coincidencias, usa una imagen aleatoria
+    const imageUrl = filtradas.length> 0
+? filtradas[Math.floor(Math.random() * filtradas.length)]
+: images[Math.floor(Math.random() * images.length)];
+
+    // Reacciona al mensaje del usuario con ♥️
+    await conn.sendMessage(m.chat, { react: { text: '♥️', key: m.key}});
+
+    // Envía la imagen con botón para pedir otra del mismo tipo
+    await conn.sendMessage(m.chat, {
+      image: { url: imageUrl},
+      caption: `🌌 Aquí tienes una imagen de tipo *${command}*`,
+      footer: '¿Quieres otra?',
+      buttons: [
+        {
+          buttonId: `.${command}`,
+          buttonText: { displayText: `Siguiente ${command} 🔁`},
+          type: 1
+}
+      ],
+      headerType: 4
+}, { quoted: m});
+
+} catch (e) {
+    m.reply('⚠️ Las sombras no pudieron encontrar una imagen...');
+    console.error(e);
+}
 };
-handler.command = handler.help = ['akira', 'akiyama', 'anna', 'asuna', 'ayuzawa', 'boruto', 'chiho', 'chitoge', 'deidara', 'erza', 'elaina', 'eba', 'emilia', 'hestia', 'hinata', 'inori', 'isuzu', 'itachi', 'itori', 'kaga', 'kagura', 'kaori', 'keneki', 'kotori', 'kurumi', 'madara', 'mikasa', 'miku', 'minato', 'naruto', 'nezuko', 'sagiri', 'sasuke', 'sakura', 'cosplay'];
+
+handler.command = handler.help = categoriasValidas;
 handler.tags = ['anime'];
 export default handler;
