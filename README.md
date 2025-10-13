@@ -1,5 +1,11 @@
 
 ![shadow-bot-MD](https://qu.ax/XQTKc.jpg)
+html
+<p align="center">
+  <img src="https://img.shields.io/github/stars/yosue891/SHADOW-BOT-MD?style=flat-square&color=red&logo=github" />
+  <img src="https://img.shields.io/github/followers/yosue891?style=social" />
+  <img src="https://img.shields.io/badge/%F0%9F%91%8D%20%20%20Creador-Yosue-red?style=for-the-badge" />
+</p>
 
 *SHADOW-BOT-MD*
 
@@ -96,3 +102,4 @@ href="https://github.com/Miku-18"><img src="https://github.com/Miku-18.png" widt
 ### ** `🌌𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 𝙨𝙝𝙖𝙙𝙤𝙬 🌌`**
 <a
 href="https://github.com/yosue891-Chian"><img src="https://github.com/yosue891.png" width="150" height="150" alt="yosue891"/></a>
+
