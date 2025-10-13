@@ -30,10 +30,10 @@ Esta obra maestra fue posible gracias a la visión y el talento de:
 
 💡 _SHADOW-BOT-MD no solo responde... se impone._
 Prepárate para llevar tu WhatsApp al siguiente nivel.
-### **`💣 Instalación por termux`**
+   ### **`🌌 Instalación por termux`**
 
 <details>
- <summary><b>:paperclip: 🖤 Comandos</b></summary>
+ <summary><b>:paperclip: 🌌 Comandos</b></summary>
 
 <img src="https://qu.ax/Ncuyr.jpg" alt="shadow-BOT" style="width: 100%; height: auto; max-width: 500px;">
 
@@ -88,15 +88,11 @@ Inicia el bot nuevamente:
 
 ---
 
-### **`🪐 COLABORADOR`**
+### **`🥀 𝙘𝙤𝙡𝙖𝙗𝙤𝙧𝙖𝙙𝙤𝙧𝙚𝙨`**
 <a
-href="https://github.com/DevZyxlJs"><img src="https://github.com/DevZyxlJs.png" width="80" height="80" alt="Alexiu"/></a> <a
-href="https://github.com/CheirZ"><img src="https://github.com/CheirZ.png" width="80" height="80" alt="Miguel"/></a>
+href="https://github.com/ado926"><img src="https://github.com/ado926.png" width="80" height="80" alt="Alexiu"/></a> <a
+href="https://github.com/Miku-18"><img src="https://github.com/Miku-18.png" width="80" height="80" alt="Miguel"/></a>
 
-### **`👑 CREADOR`**
+### ** `🌌𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 𝙨𝙝𝙖𝙙𝙤𝙬 🌌`**
 <a
-href="https://github.com/yosue 891-Chian"><img src="https://github.com/yosue891-Chian.png" width="150" height="150" alt="yosue891"/></a>
-
-
-
-
+href="https://github.com/yosue891-Chian"><img src="https://github.com/yosue891.png" width="150" height="150" alt="yosue891"/></a>
