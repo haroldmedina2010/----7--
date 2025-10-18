@@ -13,14 +13,14 @@
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/meado-learner/Michi-WaMD.git"
+"url": "git+https://github.com/yosue891/SHADOW-BOT-MD.git"
 },  
 "author": "meado-learner",
 "license": "MIT-License",
 "bugs": {
-"url": "https://github.com/meado-learner/Michi-WaMD.git/issues"
+"url": "https://github.com/yosue891/SHADOW-BOT-MD.git/issues"
 },
-"homepage": "https://github.com/meado-learner/Michi-WaMD.git#readme",
+"homepage": "https://github.com/yosue891/SHADOW-BOT-MD.gitt#readme",
 "dependencies": {
 "@bochilteam/scraper": "^4.2.4",
 "@hapi/boom": "^10.0.1",
