@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix}) => {
     let uptimeStr = `${hours}h ${minutes}m ${seconds}s`
 
     let botNameToShow = global.botname || "Shadow"
-    let bannerUrl = global.michipg || ""
+    let bannerUrl = global.michipg || "https://n.uguu.se/ZZHiiljb.jpg" // Imagen grande
     let videoUrl = "https://adonixfiles.mywire.org/files/xzadonix_07.mp4"
 
     const senderBotNumber = conn.user.jid.split('@')[0]
@@ -32,7 +32,9 @@ let handler = async (m, { conn, usedPrefix}) => {
         if (subBotConfig.name) botNameToShow = subBotConfig.name
         if (subBotConfig.banner) bannerUrl = subBotConfig.banner
         if (subBotConfig.video) videoUrl = subBotConfig.video
-} catch (e) { console.error(e)}
+} catch (e) {
+        console.error(e)
+}
 }
 
     let txt = `🎃 𝑴𝒖𝒚 𝒑𝒓𝒐𝒏𝒕𝒐 𝒆𝒏 𝑯𝒂𝒍𝒍𝒐𝒘𝒆𝒆𝒏, 𝒎𝒐𝒓𝒕𝒂𝒍𝒆𝒔...
@@ -61,47 +63,27 @@ let handler = async (m, { conn, usedPrefix}) => {
       txt += `\n`
 }
 
-    const fallbackImage = bannerUrl || global.michipg || 'https://files.catbox.moe/pk3xxk.jpg'
-
-    if (videoUrl) {
-      await conn.sendMessage(
-        m.chat,
-        {
-          video: { url: videoUrl},
-          caption: txt,
-          gifPlayback: true,
-          contextInfo: {
-            isForwarded: true,
-            forwardingScore: 999,
-            externalAdReply: {
-              title: '🕸️ Sʜᴀᴅᴏᴡ Bᴏᴛ - Mᴇɴᴜ́ ᴅᴇ ʟᴀ ᴏsᴄᴜʀɪᴅᴀᴅ 🦇',
-              thumbnailUrl: fallbackImage,
-              mediaType: 1,
-              renderLargerThumbnail: false
+    await conn.sendMessage(
+      m.chat,
+      {
+        video: { url: videoUrl},
+        caption: txt,
+        gifPlayback: true,
+        contextInfo: {
+          isForwarded: true,
+          forwardingScore: 999,
+          externalAdReply: {
+            title: '🕸️ Sʜᴀᴅᴏᴡ Bᴏᴛ - Mᴇɴᴜ́ ᴅᴇ ʟᴀ ᴏsᴄᴜʀɪᴅᴀᴅ 🦇',
+            body: 'Explora los comandos disponibles',
+            thumbnailUrl: bannerUrl, // Imagen grande arriba del video
+            mediaType: 1,
+            renderLargerThumbnail: true,
+            sourceUrl: 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O'
 }
 }
 },
-        { quoted: m}
+      { quoted: m}
 )
-} else if (bannerUrl) {
-      await conn.sendMessage(
-        m.chat,
-        {
-          video: { url: bannerUrl},
-          caption: txt
-},
-        { quoted: m}
-)
-} else {
-      await conn.sendMessage(
-        m.chat,
-        {
-          image: { url: 'https://files.catbox.moe/pk3xxk.jpg'},
-          caption: txt
-},
-        { quoted: m}
-)
-}
 
 } catch (e) {
     console.error(e)
