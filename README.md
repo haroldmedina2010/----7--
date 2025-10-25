@@ -35,6 +35,7 @@ Esta obra maestra fue posible gracias a la visión y el talento de:
 ---
 
 <img src="https://qu.ax/Ncuyr.jpg" alt="shadow-BOT" style="width: 100%; height: auto; max-width: 500px;">
+> ⨷ nota este bot por ahora no es compatible con termux ni cluod shell 
 
 ### **`🥀 𝙘𝙤𝙡𝙖𝙗𝙤𝙧𝙖𝙙𝙤𝙧𝙚𝙨`**
 <a
@@ -44,6 +45,7 @@ href="https://github.com/Miku-18"><img src="https://github.com/Miku-18.png" widt
 ### ** `🌌𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 𝙨𝙝𝙖𝙙𝙤𝙬 🌌`**
 <a
 href="https://github.com/yosue891-Chian"><img src="https://github.com/yosue891.png" width="150" height="150" alt="yosue891"/></a>
+
 
 
 
