@@ -1,6 +1,6 @@
 
 ![💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀
-](https://qu.ax/lghet.jpg)
+](https://qu.ax/SUjrf.jpg)
 html
 
 *💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀
@@ -24,6 +24,7 @@ href="https://github.com/yosue891"><img src="https://github.com/yosue891.png" wi
 
 ### ** `👑 𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 los 7 pecafos capitales 👑`**
 <a href="https://github.com/haroldmedina2010-Chian"><img src="https://github.com/haroldmedina2010.png" width="150" height="150" alt="haroldmedina2010"/></a>
+
 
 
 
