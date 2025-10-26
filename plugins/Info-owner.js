@@ -16,7 +16,7 @@ let handler = async (m, { conn}) => {
   const canalInfo = {
     title: '⚔️👹 Canal Oficial de 💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘⚔️👹',
     body: 'Sumérgete en el reyno de lyioness . Únete al canal oficial.',
-    thumbnailUrl: 'https://qu.ax/QXPmz.jpg',
+    thumbnailUrl: 'https://qu.ax/lghet.jpg',
     sourceUrl: 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O',
     mediaType: 1,
     renderLargerThumbnail: true
