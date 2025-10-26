@@ -1,5 +1,6 @@
 
-![shadow-bot-MD](https://qu.ax/XQTKc.jpg)
+![💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀
+](https://qu.ax/XQTKc.jpg)
 html
 <p align="center">
   <img src="https://img.shields.io/github/stars/yosue891/SHADOW-BOT-MD?style=flat-square&color=red&logo=github" />
@@ -7,7 +8,8 @@ html
   <img src="https://img.shields.io/badge/%F0%9F%91%8D%20%20%20Creador-Yosue-red?style=for-the-badge" />
 </p>
 
-*SHADOW-BOT-MD*
+*💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀
+*
 
 *SHADOW-BOT-MD* es un poderoso bot de WhatsApp diseñado para transformar tus chats en una experiencia dinámica, divertida y automatizada. Construido con pasión y precisión, este bot ofrece una amplia gama de funciones que lo convierten en una herramienta esencial para grupos, comunidades y usuarios individuales.
 
@@ -45,6 +47,7 @@ href="https://github.com/Miku-18"><img src="https://github.com/Miku-18.png" widt
 ### ** `🌌𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 𝙨𝙝𝙖𝙙𝙤𝙬 🌌`**
 <a
 href="https://github.com/yosue891-Chian"><img src="https://github.com/yosue891.png" width="150" height="150" alt="yosue891"/></a>
+
 
 
 
