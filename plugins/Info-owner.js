@@ -1,64 +1,61 @@
 import fetch from 'node-fetch';
 
-let handler = async (m, { conn}) => {
-  await m.react('😈');
+let handler = async (m, { conn }) => {
+  await m.react('👑');
 
   let username = await conn.getName(m.sender);
 
-  // Lista de contactos estilo Meliodas Garden
+  // Lista con único contacto
   let list = [
     {
-      displayName: " 💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘 Creator ",
-      vcard: `BEGIN:VCARD\nVERSION:3.0\nFN: Meliodas Master\nTEL;type=CELL;waid=574171514640:+57 317151-4640\nTEL;type=CELL;waid=573171514640:+57 317-1514640\nTEL;type=CELL;waid=+57 317 151 4640\nEND:VCARD`
-}
+      displayName: "💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀",
+      vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:𓆩‌۫᷼ ִֶָღܾ݉͢𝐇ꪖ𝐫o͟𝐥𝐝𓆪 MD\nTEL;type=CELL;waid=573171514640:+57 317 1514640\nEND:VCARD`
+    }
   ];
 
   const canalInfo = {
-    title: '⚔️👹 Canal Oficial de 💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘⚔️👹',
-    body: 'Sumérgete en el reyno de lyioness . Únete al canal oficial.',
-    thumbnailUrl: 'https://qu.ax/lghet.jpg',
-    sourceUrl: 'https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O',
+    title: 'Ver canal oficial 🖤',
+    body: 'Haz clic para acceder al canal del bot',
+    thumbnailUrl: 'https://qu.ax/SUjrf.jpg',
+    sourceUrl: 'https://whatsapp.com/channel/0029VbBG4i2GE56rSgXsqw2W',
     mediaType: 1,
     renderLargerThumbnail: true
-};
+  };
 
   // Enviar contacto con preview
   await conn.sendMessage(m.chat, {
     contacts: {
       displayName: `${list.length} Contacto`,
       contacts: list
-},
+    },
     contextInfo: {
       externalAdReply: canalInfo
-}
-}, { quoted: m});
+    }
+  }, { quoted: m });
 
-  // Mensaje decorado estilo The Eminence in Shadow
-  let txt = ` 𝙄𝙉𝙁𝙊 𝘿𝙀𝙇 𝘾𝙍𝙀𝘼𝘿𝙊𝙍
+  // Mensaje decorado personalizado
+  let txt = `🖤ＡＱＵ（́  ɛֆȶǟ́ ꒒ꂦꑄ 𝘿𝘼𝙏𝙊𝙎 ∂є ᴍɪ ᑕᖇᗴᗩᗪOᖇ🏐  
+> Ⴆყ 𓆩‌۫᷼ ִֶָღܾ݉͢𝐇ꪖ𝐫o͟𝐥𝐝𓆪 𝐌𝐃
 
-> 👹𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟⚔️
-> 😉 El estratega oculto tras las líneas del código
+🖤ᏞᏆΝᏦ𝐒🔗🪀
 
-📡 𝗖𝗔𝗡𝗔𝗟 𝗢𝗙𝗜𝗖𝗜𝗔𝗟:
-https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O
+🖤𝐓𝐈𝐊 𝐓𝐎𝐊📹: https://tiktok.com/@ladobleaa2010
 
-📱 𝗖𝗢𝗡𝗧𝗔𝗖𝗧𝗢𝗦 𝗗𝗘 𝗟𝗔 𝗢𝗥𝗚𝗔𝗡𝗜𝗭𝗔𝗖𝗜𝗢́𝗡:
-+57 3171514640
-+57 3171514640
-+57 3171514640
+🪀😍𝐂𝐀𝐍𝐀𝐋 𝐃𝐄Ꮮ🏐 💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀 🖤: https://whatsapp.com/channel/0029VbBG4i2GE56rSgXsqw2W
 
-🧬 𝗖𝗢𝗗𝗘 𝗗𝗘 𝗔𝗖𝗖𝗘𝗦𝗢:
-https://wa.me/+(785)3291589?text=.code
+🖤NÚMERO ÐÈ ᘻᓰ ᑕᖇᗴᗩᗪᓍᖇ: +57 317 1514640 ☟
+https://WA.me/573171514640?text=
 
- *😈𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟⚔️* — El poder no se muestra... se oculta.`;
+🏐#️⃣𐒐Ꮼ́𐒄ᏋᏒ𐒀 DEL 𝗕𝗢𝗧🤖🖤:
+https://WA.me/17853291589?text=.code`;
 
   // Enviar mensaje decorado con preview al final
   await conn.sendMessage(m.chat, {
     text: txt,
     contextInfo: {
       externalAdReply: canalInfo
-}
-}, { quoted: m});
+    }
+  }, { quoted: m });
 };
 
 handler.help = ['owner', 'creador'];
