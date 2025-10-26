@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 export async function before(m, { conn, participants, groupMetadata}) {
   if (!m.messageStubType ||!m.isGroup) return true;
 
-  let vn = 'https://files.catbox.moe/viiztg.mp3';
-  let vn2 = 'https://files.catbox.moe/u8cr1t.mp3';
+  let vn = 'https://qu.ax/GYUbw.mp4';
+  let vn2 = 'https://qu.ax/GYUbw.mp4';
   let chat = global.db.data.chats[m.chat];
   const getMentionedJid = () => {
     return m.messageStubParameters.map(param => `${param}@s.whatsapp.net`);
@@ -25,9 +25,9 @@ export async function before(m, { conn, participants, groupMetadata}) {
       fileName: `bienvenida.mp3`,
       contextInfo: {
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363403739366547@newsletter",
+          newsletterJid: "120363420231014623@newsletter",
           serverMessageId: '',
-          newsletterName: 'shadow'
+          newsletterName: 'MELIODAS'
 },
         forwardingScore: 9999999,
         isForwarded: true,
@@ -53,9 +53,9 @@ export async function before(m, { conn, participants, groupMetadata}) {
       fileName: `despedida.mp3`,
       contextInfo: {
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363403739366547@newsletter",
+          newsletterJid: "120363420231014623@newsletter",
           serverMessageId: '',
-          newsletterName: 'shadow'
+          newsletterName: 'Meliodas'
 },
         forwardingScore: 9999999,
         isForwarded: true,
