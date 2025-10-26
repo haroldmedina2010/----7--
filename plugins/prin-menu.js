@@ -19,8 +19,7 @@ let handler = async (m, { conn, usedPrefix}) => {
     let minutes = Math.floor((uptimeSec % 3600) / 60)
     let seconds = Math.floor(uptimeSec % 60)
     let uptimeStr = `${hours}h ${minutes}m ${seconds}s`
-
-    let botNameToShow = global.botname || "Shadow"
+    let botNameToShow = global.botname || "💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀"
     let bannerUrl = global.michipg || "https://n.uguu.se/ZZHiiljb.jpg" // Imagen grande
     let videoUrl = "https://adonixfiles.mywire.org/files/xzadonix_07.mp4"
 
@@ -48,7 +47,7 @@ let handler = async (m, { conn, usedPrefix}) => {
 
 🦇 𝐄𝐬𝐭𝐨𝐬 𝐬𝐨𝐧 𝐥𝐨𝐬 𝐜𝐨𝐦𝐚𝐧𝐝𝐨𝐬 𝐝𝐞 𝐥𝐚 𝐨𝐬𝐜𝐮𝐫𝐢𝐝𝐚𝐝:\n\n`
 
-    const halloweenEmojis = ['👹','👻','🎃','🧙🏻‍♀️','🧟','🧟‍♀️','🧛🏻','🧛🏻‍♀️','🦇','🕸️','🕷️','🧙🏻‍♂️','🧹']
+    const halloweenEmojis = ['👹','😈','🎃','🧙🏻‍♀️','🧟','🧟‍♀️','🧛🏻','🧛🏻‍♀️','🦇','🕸️','🕷️','🧙🏻‍♂️','🧹']
     let emojiIndex = 0
 
     for (let tag in menu) {
@@ -73,7 +72,7 @@ let handler = async (m, { conn, usedPrefix}) => {
           isForwarded: true,
           forwardingScore: 999,
           externalAdReply: {
-            title: '🕸️ Sʜᴀᴅᴏᴡ Bᴏᴛ - Mᴇɴᴜ́ ᴅᴇ ʟᴀ ᴏsᴄᴜʀɪᴅᴀᴅ 🦇',
+            title: '🕸️ 💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀- Mᴇɴᴜ́ ᴅᴇ ʟᴀ ᴏsᴄᴜʀɪᴅᴀᴅ 🦇',
             body: 'Explora los comandos disponibles',
             thumbnailUrl: bannerUrl, // Imagen grande arriba del video
             mediaType: 1,
@@ -87,7 +86,7 @@ let handler = async (m, { conn, usedPrefix}) => {
 
 } catch (e) {
     console.error(e)
-    conn.reply(m.chat, "👻 Ocurrió un error en las sombras...", m)
+    conn.reply(m.chat, "😈 Ocurrió un error😐...", m)
 }
 }
 
