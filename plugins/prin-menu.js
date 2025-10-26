@@ -20,7 +20,7 @@ let handler = async (m, { conn, usedPrefix}) => {
     let seconds = Math.floor(uptimeSec % 60)
     let uptimeStr = `${hours}h ${minutes}m ${seconds}s`
     let botNameToShow = global.botname || "💎𝖒⃢⃟𝖊𝖑𝖎𝖔𝖉𝖆𝖘-𝖇𝖔𝖙-7-𝖕𝖊𝖈𝖆𝖉𝖔𝖘⃟💀"
-    let bannerUrl = global.michipg || "https://n.uguu.se/ZZHiiljb.jpg" // Imagen grande
+    let bannerUrl = global.michipg || "https://qu.ax/GYUbw.mp4" // Imagen grande
     let videoUrl = "https://adonixfiles.mywire.org/files/xzadonix_07.mp4"
 
     const senderBotNumber = conn.user.jid.split('@')[0]
