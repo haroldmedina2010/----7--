@@ -22,8 +22,9 @@ Esta obra maestra fue posible gracias a la visión y el talento de:
 href="https://github.com/ado926"><img src="https://github.com/ado926.png" width="80" height="80" alt="Alexiu"/></a> <a
 href="https://github.com/yosue891"><img src="https://github.com/yosue891.png" width="80" height="80" alt="Miguel"/></a>
 
-### ** `👑 𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 los 7 pecafos capitales 👑`**
+### ** `👑 𝘾𝙍𝙀𝘼𝘿𝙊𝙍 𝙙𝙚 los 7 pecados capitales 👑`**
 <a href="https://github.com/haroldmedina2010-Chian"><img src="https://github.com/haroldmedina2010.png" width="150" height="150" alt="haroldmedina2010"/></a>
+
 
 
 
