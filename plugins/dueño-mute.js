@@ -7,16 +7,16 @@ const handler = async (m, { conn, command, text, isOwner}) => {
 ? m.quoted.sender
 : text;
 
-    if (!isOwner) throw '🌌 *Solo el verdadero maestro de las sombras puede ejecutar este comando.*';
+    if (!isOwner) throw '⚔️ *Solo el verdadero maestro de las sombras puede ejecutar este comando.*';
     if (!userId) throw '👻 *Debes mencionar al objetivo que será silenciado o liberado.*';
 
     const user = global.db.data.users[userId] || {};
     user.mute = user.mute || false;
 
     if (command === 'mute') {
-        if (user.mute) throw '⚠️ *Ese alma ya ha sido silenciada por las sombras.*';
+        if (user.mute) throw '⚠️ *Ese alma ya ha sido silenciada por los 10 mandamientos.*';
         user.mute = true;
-        await conn.reply(m.chat, '🔇 *El usuario ha sido silenciado. Sus palabras serán borradas por la oscuridad.*', m);
+        await conn.reply(m.chat, '🔇 *El usuario ha sido silenciado. Sus palabras serán borradas por el reyno demoniaco.*', m);
 }
 
     if (command === 'unmute') {
