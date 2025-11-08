@@ -7,7 +7,7 @@ global.botNumber = ""
 
 global.owner = [
 // ZONA DE JIDS
-["584242773183", "yosue </>", true],
+["584242773183", "harold </>", true],
 ["523328418129"],
 ["50493732693"],  
 // ZONA DE LIDS 
@@ -29,10 +29,10 @@ global.jadi = "Sessions/SubBot"
 global.MichiJadibts = true
 
 global.botname = "Shadow-BOT-MD"
-global.textbot = "Shadow-BOT, yosue"
-global.dev = "SHADOW-BOT-MD"
-global.author = "© mᥲძᥱ ᥕі𝗍һ 𝙮𝙤𝙨𝙪𝙚"
-global.etiqueta = "𝙮𝙤𝙨𝙪𝙚 | 𝟤𝟢𝟤𝟧 ©"
+global.textbot = "MELIODAS-BOT, Harold"
+global.dev = "MELODIAS-BOT"
+global.author = "© mᥲძᥱ ᥕі𝗍һ Harold"
+global.etiqueta = "Harold | 𝟤𝟢𝟤𝟧 ©"
 global.currency = "¢ Pesos"
 global.michipg = "https://adonixfiles.mywire.org/files/xzadonix_81.mp4"
 global.icono = "https://qu.ax/Xktgw.jpg"
@@ -41,11 +41,11 @@ global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
 
 global.group = "https://chat.whatsapp.com/D80dadzwRq4LQqFGUntZfK?mode=ems_copy_t"
 global.community = ""
-global.channel = "https://whatsapp.com/channel/0029VbArz9fAO7RGy2915k3O"
+global.channel = "https://whatsapp.com/channel/0029VbBt9P02ZjCgOYex1s11"
 global.github = "https://github.com"
 global.gmail = "minexdt@gmail.com"
 global.ch = {
-ch1: "120363420941524030@newsletter"
+ch1: "120363405639090840@newsletter"
 }
 
 
